@@ -1,0 +1,109 @@
+\documentclass[12pt]{artikel3}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bigboxtimes}{\boxtimes}
+
+\title{Alternating Least Squares using $QR$-factorizations}
+\author{Jan Van lent}
+
+\begin{document}
+
+\maketitle
+
+Suppose we are looking for a separated vector of the form
+\[x = \sum_{l=1}^r s_l \, x^1_l \otimes \dotsb \otimes x^d_l\]
+or for each component
+\[x_{j_1,\dotsc,j_d} = 
+\sum_{l=1}^r s_l \, x^1_{j_1,l} \dotsm x^d_{j_d,l}.\] 
+To emphasize that this representation consists of a vector \(s =
+[s_l] \in \R^r\) and matrices \(X^i = [x^i_{j_i,l}] \in \R^{M_i, r}\), 
+I introduce the notation
+\[x = ( X^1 \boxtimes \dotsb \boxtimes X^d ) s,\]
+where \(A \boxtimes B\) is the matrix with as columns the tensor
+product of the corresponding columns of \(A\) and \(B\), i.e.,
+\[ A \boxtimes B = 
+\left[\begin{array}{ccc} a_1 & \cdots & a_r \end{array}\right] \boxtimes 
+\left[\begin{array}{ccc} b_1 & \cdots & b_r \end{array}\right] =
+\left[\begin{array}{ccc} a_1 \otimes b_1 & \cdots & 
+a_r \otimes b_r \end{array}\right].\]
+
+Let the vector to be approximated be 
+\[y = ( Y^1 \boxtimes \dotsb \boxtimes Y^d ) t,\]
+where \(t \in \R^q\) and \(Y^i \in \R^{M_i, q}\).  
+
+The alternating least squares algorithm updates \(s\) and \(X^1\),
+then \(s\) and \(X^2\), etc.
+
+Suppose \(d = 2\) and we want to find \(X^2\) and \(s\) with \(X^1\)
+fixed. The system of equations is
+\[ ( X^1 \boxtimes X^2 ) s \approx ( Y^1 \boxtimes Y^2 ) t. \]
+Let the reduced \(QR\)-factorization of \(X^1\) be
+\[X^1 = Q^1 R^1,\]
+where \(R^1 \in \R^{r \times r}\) is lower triangular and
+\(Q^1 \in \R^{M_1 \times r}\) has orthogonal columns (see
+\cite{GVL96}).  Using this factorization the system of \(M_1\)
+equations can be transformed into
+\[ ( R^1 \boxtimes X^2 ) s = ( \tilde{Y}^1 \boxtimes Y^2 ) t, \]
+where \(\tilde{Y}^1 = Q^T Y^1 \in \R^{r \times r}\). The
+solution of this system of \(r\) equations is the least squares
+solution we are looking for. The last column of \(X^2\) and the last
+element of \(s\) are found by normalizing the vector
+\[ ( \tilde{Y}^1_{r,*} \boxtimes Y^1 ) t / R_{r,r}. \]
+Using these values the second to last column can be found, etc. This
+is essentially back substitution with \(R^1\) and multiple right hand
+sides. This can also be seen by introducing the matrices \(Z = (X^2
+s)^T\) so that left hand side of the original system becomes \(X^1
+Z\). The matrix \(Z\) is the solution of a standard least squares
+problem with multiple right hand sides.
+
+The extension to \(d > 2\) is a bit involved, but possible. Given
+factorizations \(X^i = Q^i R^i\) for \(i \neq k\), the system of
+equations
+\[ ( X^1 \boxtimes \dotsb \boxtimes X^k \boxtimes \dotsb \boxtimes X^d ) s 
+\approx
+( Y^1 \boxtimes \dotsb \boxtimes Y^k 
+\boxtimes \dotsb \boxtimes Y^d ) t,\]
+becomes
+\[ ( R^1 \boxtimes \dotsb \boxtimes X^k \boxtimes \dotsb \boxtimes R^d ) s 
+\approx
+( \tilde{Y}^1 \boxtimes \dotsb \boxtimes Y^k 
+\boxtimes \dotsb \boxtimes \tilde{Y}^d ) t.\]
+The last column of \(X^k\) can be found by considering all the rows of
+\(\bigboxtimes_{i \neq k} R^i\) that have only one non-zero element
+(the last). Using this information the second to last column is found
+by considering all the rows having two non-zero elements, etc. Each column
+of \(X^k\) is the solution of a least squares problem with a column
+vector as matrix. The same solution can also be found using a
+\(QR\)-factorization of \(\bigboxtimes_{i \neq k} R^i\). The reduction
+to lower triangular form can exploit the fact that many zeros are
+already present.
+
+For a standard least squares problem
+\[Ax \approx b,\]
+regularization of the normal equations takes the form
+\[(A^T A + \nu I) x = A^T b.\]
+Regularization for the QR, SVD or MGS approach is obtained by solving
+\[\left[\begin{array}{c}A \\ \sqrt{\nu} I\end{array}\right]
+\approx
+\left[\begin{array}{c}b \\ 0\end{array}\right],\]
+see for example p.~47 of \cite{Kel99}. I do not immediately see how
+to do the equivalent for the structured systems above, but maybe
+appending a scaled identity matrix to each
+\(X^i\) would be appropriate (maybe scaled by \(\nu^{\frac{1}{2d}}?\)).
+
+An approach based on \(QR\) is more expensive than the approach based
+on normal equations, but, provided regularization can be introduced, it
+may be able to obtain more accurate results.
+
+I have not put any thought into finding a \(QR\) approach for the
+least squares problem \(A x \approx y\), involving a matrix \(A\) and
+vectors \(x\) and \(y\) in separated representation, but I think that
+this should also be possible.
+
+\bibliographystyle{alpha}
+\bibliography{qr}
+
+\end{document}

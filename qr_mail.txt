@@ -1,0 +1,15 @@
+I have read your articles entitled
+
+[1] "Numerical operator calculus in higher dimensions"
+
+and
+
+[2] "Algorithms for numerical analysis in high dimensions"
+
+with great interest. You point out on p. 11 of [2] that there is a loss of accuracy due to the use of inner products. Is this the same as saying that the least squares method based on normal equations is badly conditioned? For standard least squares problems this can be avoided using methods based on QR, SVD or MGS instead of the normal equations (see chapter ??  in [3]). I wondered wether analogous algorithms are possible for the alternating least squares algorithm you describe. It is of course possible to assemble the system matrix and right hand side for the least squares problem, but this would be very inefficient and would require a lot of memory. In the accompanying document I outline some ideas for an approach that exploits the structure of the problem. I hope you find the time to have a look at it. And I hope it makes sense :)
+
+Regards.
+
+Jan Van lent
+
+[3] Golub and Van Loan, Matrix computations
