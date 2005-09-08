@@ -71,15 +71,22 @@ becomes
 \approx
 ( \tilde{Y}^1 \boxtimes \dotsb \boxtimes Y^k 
 \boxtimes \dotsb \boxtimes \tilde{Y}^d ) t.\]
-The last column of \(X^k\) can be found by considering all the rows of
-\(\bigboxtimes_{i \neq k} R^i\) that have only one non-zero element
-(the last). Using this information the second to last column is found
-by considering all the rows having two non-zero elements, etc. Each column
-of \(X^k\) is the solution of a least squares problem with a column
-vector as matrix. The same solution can also be found using a
-\(QR\)-factorization of \(\bigboxtimes_{i \neq k} R^i\). The reduction
-to lower triangular form can exploit the fact that many zeros are
-already present.
+The factorizations for \(M_i = M\) take about \(d (2Mr^2 - \frac{2}{3}
+r^3)\) operations. Including the transformations of \(Y^i\) to
+\(\tilde{Y}^i\) adds about another \(d(Mq^2+\frac{2}{3}q^3)\)
+operations.  The last column of \(X^k\) can be found by considering
+all the rows of \(\bigboxtimes_{i \neq k} R^i\) that have only one
+non-zero element (the last). Using this information the second to last
+column is found by considering all the rows having two non-zero
+elements, etc. Each column of \(X^k\) is the solution of a least
+squares problem with a column vector as matrix.  The same solution can
+also be found using a further \(QR\)-factorization of
+\(\bigboxtimes_{i \neq k} R^i\). The reduction to lower triangular
+form can exploit the structure of this matrix. We can, for example,
+first zero out \(R^d\) by working on \(R^{d-1} \boxtimes R^d\), then
+\(R^{d-1}\), and so on upto \(R^2\). I think transforming
+\(\bigboxtimes_{i \neq k} R^i\) and \(\bigboxtimes_{i \neq k}
+\tilde{Y}^i\) takes about \(d(\frac{2}{3} r^3 + 2 q r^2)\) operations.
 
 For a standard least squares problem
 \[Ax \approx b,\]
@@ -89,10 +96,10 @@ Regularization for the QR, SVD or MGS approach is obtained by solving
 \[\left[\begin{array}{c}A \\ \sqrt{\nu} I\end{array}\right]
 \approx
 \left[\begin{array}{c}b \\ 0\end{array}\right],\]
-see for example p.~47 of \cite{Kel99}. I do not immediately see how
-to do the equivalent for the structured systems above, but maybe
-appending a scaled identity matrix to each
-\(X^i\) would be appropriate (maybe scaled by \(\nu^{\frac{1}{2d}}?\)).
+see for example p.~47 of \cite{Kel99}. I do not immediately see how to
+do the equivalent for the structured systems above, but maybe
+appending a scaled identity matrix to each \(X^i\) would be
+appropriate (maybe scaled by \(\nu^{\frac{1}{2d}}?\) or \(\mu\)).
 
 An approach based on \(QR\) is more expensive than the approach based
 on normal equations, but, provided regularization can be introduced, it
