@@ -34,6 +34,7 @@ tic
 toc
 
 % difference in the least-squares solutions
-maxabs(RR\CC - R_\C_)
-maxabs(RR\CC - R\C)
-maxabs(R_\C_ - R\C)
+err = [maxabs(RR\CC - R_\C_)
+       maxabs(RR\CC - R\C)
+       maxabs(R_\C_ - R\C)]';
+digits = -log10(err)
