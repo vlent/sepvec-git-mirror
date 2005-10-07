@@ -3,8 +3,8 @@ d = 3;
 % size of vectors (same for each dimension)
 M = 100;
 % seperation ranks
-r = 6;
-s = r + 3;
+r = 8;
+s = r + 2;
 for i = 1:d
   A{i} = rand(M, r);
   B{i} = rand(M, s);
