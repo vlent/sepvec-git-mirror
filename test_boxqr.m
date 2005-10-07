@@ -1,6 +1,6 @@
 d = 3;
 M = 100;
-r = 10;
+r = 5;
 %mu = 1e-7;
 for i = 1:d
   A{i} = rand(M, r);
@@ -17,10 +17,11 @@ for i = 2:d
   BB = boxprod(BB, B{i});
 end
 
-RRCC = qr([AA, BB], 0);
+%RRCC = qr([AA, BB], 0);
 %RRCC = qr([AA, BB; eye(r)*mu, zeros(r, r)], 0);
-RR = triu(RRCC(1:r,1:r));
-CC = RRCC(1:r,r+1:2*r);
+%RR = triu(RRCC(1:r,1:r));
+%CC = RRCC(1:r,r+1:2*r);
+[CC, RR] = qraug(AA, BB);
 toc
 
 % (2) the products are eliminated pairwise

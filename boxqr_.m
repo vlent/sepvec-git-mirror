@@ -15,7 +15,8 @@ C = B{1};
 for i = 2:d
   AA = boxprod(R, A{i});
   BB = boxprod(C, B{i});
-  RC = qr([AA, BB], 0);
-  R = triu(RC(1:r,1:r));
-  C = RC(1:r,r+1:2*r);
+  %RC = qr([AA, BB], 0);
+  %R = triu(RC(1:r,1:r));
+  %C = RC(1:r,r+1:2*r);
+  [C, R] = qraug(AA, BB);
 end
