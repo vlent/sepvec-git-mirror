@@ -1,6 +1,6 @@
 d = 3;
-M = 20;
-r = 7;
+M = 100;
+r = 10;
 %mu = 1e-7;
 for i = 1:d
   A{i} = rand(M, r);
@@ -34,5 +34,6 @@ tic
 toc
 
 % difference in the least-squares solutions
-RR\CC - R_\C_
-RR\CC - R\C
+maxabs(RR\CC - R_\C_)
+maxabs(RR\CC - R\C)
+maxabs(R_\C_ - R\C)
