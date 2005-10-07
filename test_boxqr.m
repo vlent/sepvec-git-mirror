@@ -2,11 +2,12 @@
 d = 3;
 % size of vectors (same for each dimension)
 M = 100;
-% seperation rank
-r = 5;
+% seperation ranks
+r = 6;
+s = r + 3;
 for i = 1:d
   A{i} = rand(M, r);
-  B{i} = rand(M, r);
+  B{i} = rand(M, s);
 end
 
 % (1) the products are multiplied out 
