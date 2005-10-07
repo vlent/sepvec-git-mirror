@@ -1,10 +1,12 @@
 % number of dimensions
 d = 3;
 % size of vectors (same for each dimension)
-M = 100;
+M = 20;
 % seperation ranks
 r = 8;
 s = r + 2;
+A = cell(d, 1);
+B = cell(d, 1);
 for i = 1:d
   A{i} = rand(M, r);
   B{i} = rand(M, s);
