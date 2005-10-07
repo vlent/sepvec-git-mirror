@@ -17,10 +17,6 @@ for i = 2:d
   BB = boxprod(BB, B{i});
 end
 
-%RRCC = qr([AA, BB], 0);
-%RRCC = qr([AA, BB; eye(r)*mu, zeros(r, r)], 0);
-%RR = triu(RRCC(1:r,1:r));
-%CC = RRCC(1:r,r+1:2*r);
 [CC, RR] = qraug(AA, BB);
 toc
 

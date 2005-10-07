@@ -17,25 +17,11 @@ function [C, R] = boxqr(A, B)
 d = length(A);
 r = size(A{1}, 2);
 
-% QR-factorization of the individual matrices
-%for i = 1:d
-%  [CC{i}, RR{i}] = qr(A{i}, B{i}, 0);
-%end
-
 % pairwise elimination of the `box products'
-%RC = qr([A{1}, B{1}], 0);
-%R = triu(RC(1:r,1:r));
-%C = RC(1:r,r+1:2*r);
 [C, R] = qraug(A{1}, B{1});
 for i = 2:d
-  %RC_ = qr([A{i}, B{i}], 0);
-  %R_ = triu(RC_(1:r,1:r));
-  %C_ = RC_(1:r,r+1:2*r);
   [C_, R_] = qraug(A{i}, B{i});
   RR = boxprod(R, R_);
   CC = boxprod(C, C_);
-  %RC = qr([RR, CC], 0);
-  %R = triu(RC(1:r,1:r));
-  %C = RC(1:r,r+1:2*r);
   [C, R] = qraug(RR, CC);
 end
