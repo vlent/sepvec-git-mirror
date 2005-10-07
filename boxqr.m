@@ -3,20 +3,23 @@ function [C, R] = boxqr(A, B)
 % boxqr   QR-factorization of box product
 %
 % [C, R] = boxqr(A, B)
-% A, B are lists of matrices with the same numbers of columns
-% the corresponding matrices in A and B have the same number of rows
-% R is the lower triangular matrix in the QR-factorization of
-% the box product of the matrices in A
+% A and B are lists of matrices so that for all i and j
+%   size(A{i}, 2) == size(A{j}, 2)
+%   size(B{i}, 2) == size(B{j}, 2)
+%   size(A{i}, 1) == size(B{i}, 1)
+% R is the lower triangular matrix in the reduced QR-factorization of
+% the `box product' of the matrices in A
 % C is Q' applied to the `box product' of the matrices in B
 %
 % it is assumed that the matrices have no less rows than columns
+%   size(A{i}, 1) >= size(A{i}, 2)
 
 d = length(A);
 r = size(A{1}, 2);
 
 % QR-factorization of the individual matrices
 %for i = 1:d
-%  [CC{i}, RR{i}] = qr(A{i}, B{i});
+%  [CC{i}, RR{i}] = qr(A{i}, B{i}, 0);
 %end
 
 % pairwise elimination of the `box products'
