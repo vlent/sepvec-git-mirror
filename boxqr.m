@@ -1,5 +1,8 @@
 function [C, R] = boxqr(A, B)
 
+% boxqr   QR-factorization of box product
+%
+% [C, R] = boxqr(A, B)
 % A, B are lists of matrices with the same numbers of columns
 % the corresponding matrices in A and B have the same number of rows
 % R is the lower triangular matrix in the QR-factorization of
