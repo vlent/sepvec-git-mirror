@@ -26,6 +26,7 @@ R
 C
 Xt = (R \ C) * (G.vec{i} * diag(G.coeff))';
 %X = G.vec{i} * ((diag(G.coeff) * C') / R');
+%%% normalization, could be put in main loop (alt_ls.m)
 c = sqrt(sum(Xt.^2, 2));
 %F.vec{i} = X / diag(c); 
 F.vec{i} = dmult(1 ./ c, Xt)';
