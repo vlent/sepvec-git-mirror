@@ -3,9 +3,9 @@ function [F, it, flag] = alt_ls(G, F, maxit, tol, mu)
 %%% F = alt_ls(G, F)
 %%% 
 %%% alternating least squares algorithm
-%%% given a vector G in seperated form 
+%%% given a vector G in separated form 
 %%% (list of matrices with same number of columns)
-%%% find an approximation F in seperated form
+%%% find an approximation F in separated form
 %%% starting from given F
 %%% maxit: maximum number of iterations
 %%% tol: relative tolerance

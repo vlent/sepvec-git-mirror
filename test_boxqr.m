@@ -2,7 +2,7 @@
 d = 3;
 % size of vectors (same for each dimension)
 M = 20;
-% seperation ranks
+% separation ranks
 r = 8;
 s = r + 2;
 A = cell(d, 1);
