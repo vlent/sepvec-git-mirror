@@ -2,7 +2,7 @@ function F = alt_ls_step(G, F, i, mu)
 
 [dims, r, s] = sepvec_compat(F, G);
 
-C = ones(1, r);
+C = ones(1, s);
 R = ones(1, r);
 for j = 1:dims
   if j != i
