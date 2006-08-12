@@ -22,9 +22,16 @@ end
 % R * (F.vec{i} * diag(F.coeff))' == C * (G.vec{i} * diag(G.coeff))'
 % R * X' == C * (G.vec{i} * diag(G.coeff))'
 
+R
+C
 Xt = (R \ C) * (G.vec{i} * diag(G.coeff))';
 %X = G.vec{i} * ((diag(G.coeff) * C') / R');
 c = sqrt(sum(Xt.^2, 2));
 %F.vec{i} = X / diag(c); 
 F.vec{i} = dmult(1 ./ c, Xt)';
 F.coeff = c;
+
+G.vec{1}
+G.coeff
+F.vec{1}
+F.coeff
