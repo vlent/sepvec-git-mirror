@@ -1,4 +1,4 @@
-F = alt_ls_step(G, F, i, mu)
+function F = alt_ls_step(G, F, i, mu)
 
 [dims, r, s] = sepvec_compat(F, G);
 
