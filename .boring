@@ -33,3 +33,9 @@
 \.log$
 \.ps$
 \.pdf$
+\.aux$
+\.bbl$
+\.blg$
+\.dvi$
+(^|/)auto
+(^|/)octave-core$
