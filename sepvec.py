@@ -3,7 +3,8 @@ import math
 from scipy import *
 from linalg import *
 
-
+# Khatri-Rao product
+# De Lathauwer (2006) ldl-04-95.pdf
 def boxprod(A, B):
     mA, nA = A.shape
     mB, nB = B.shape
